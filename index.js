@@ -1,30 +1,40 @@
 require("dotenv").config()
 const Discord = require("discord.js")
+const fs = require('fs');
 
-var embeds = require('./embeds.js');
+const commandData = JSON.parse(fs.readFileSync('commands.json'));
 
-const client = new Discord.Client()
+const commands = {};
+const info = ['Currently available commands:'];
+
+for (const k of Object.keys(commandData)) {
+    info.push(commandData[k].info)
+
+    commands[k] = new Discord.MessageEmbed()
+        .setColor(commandData[k].color)
+        .setTitle(commandData[k].title)
+        .setDescription(commandData[k].description);
+
+    for (const field of commandData[k].fields) {
+        commands[k].addField(field.name, field.value, !!field.inline)
+    }
+}
+
+const client = new Discord.Client();
+
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`)
 })
+
 client.on("message", msg => {
     if (msg.content.startsWith("!")) {
-        switch(msg.content) {
-            case "!brickless":
-                msg.channel.send(embeds.bricklessEmbed);
-                break;
-            case "!hdplex":
-                msg.reply("Info about HDPlex")
-                break;
-            case "!gpu":
-                msg.channel.send(embeds.gpuEmbed);
-                break;
-            default:
-                msg.reply("Currently available commands:\n" + 
-                            "!brickless\t\tInfo about brickless configurations\n" +
-                            "!hdplex\t\t\tInfo about HDPlex power supplies\n" + 
-                            "!gpu\t\t\t\tInfo about GPU options and fitment")
+        const messageEmbed = commands[msg.content];
+        if (messageEmbed) {
+            msg.channel.send(messageEmbed);
+        } else {
+            msg.reply(info.join('\n'))
         }
-  }
+    }
 })
+
 client.login(process.env.BOT_TOKEN)
