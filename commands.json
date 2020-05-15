@@ -38,5 +38,18 @@
                 "value": "The most common brickless configuration is using an HDPLEX 400W AC-DC module along the side of the chassis near the GPU to convert mains power input to 19V DC output. This is then fed to an HDPLEX 400W HiFi DC-ATX module, which converts the 19V to the various voltages and connectors necessary for the motherboard, GPU, and SATA drives (if used)."
             }
         ]
+    },
+
+    "!custom": {
+        "info": "!custom\t\tHow to get custom s4m work done",
+        "color": "#0099ff",
+        "title": "Custom Requests",
+        "description": "",
+        "fields": [
+            {
+                "name": "Send an email",
+                "value": "For all custom requests, whether that be custom front panel, custom cables, custom _anything_, email support@nfc-systems.com"
+            }
+        ]
     }
 }
