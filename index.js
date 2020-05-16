@@ -4,7 +4,8 @@ const fs = require('fs');
 
 const commandData = JSON.parse(fs.readFileSync('commands.json'));
 
-const commands = {};
+const commandEmbeds = {};
+const dmEmbeds = {};
 const commandListEmbed = new Discord.MessageEmbed()
     .setColor("#0099ff")
     .setTitle("Command list")
@@ -12,15 +13,37 @@ const commandListEmbed = new Discord.MessageEmbed()
 const info = ['Currently available commands:'];
 
 for (const k of Object.keys(commandData)) {
-    commandListEmbed.addField(k, commandData[k].info, true);
+    // When building the command list, add @username for DM-targeted commands
+    if (commandData[k].dm == false) {
+        commandListEmbed.addField(k, commandData[k].info, true);
+    } else {
+        commandListEmbed.addField(k + ' [@username]', commandData[k].info, true);
+    }
 
-    commands[k] = new Discord.MessageEmbed()
+    // Create embed for main channel
+    commandEmbeds[k] = new Discord.MessageEmbed()
         .setColor(commandData[k].color)
         .setTitle(commandData[k].title)
         .setDescription(commandData[k].description);
 
+    // Create embed for DM reply
+    dmEmbeds[k] = new Discord.MessageEmbed()
+        .setColor(commandData[k].color)
+        .setTitle(commandData[k].title)
+        .setDescription(commandData[k].description);
+
+    // Loop through fields
     for (const field of commandData[k].fields) {
-        commands[k].addField(field.name, field.value, !!field.inline)
+        // If the command is channel-targeted, add fields to main command embed. Otherwise, add fields to DM embed
+        if (commandData[k].dm == false) {
+            commandEmbeds[k].addField(field.name, field.value, !!field.inline);
+        } else {
+            dmEmbeds[k].addField(field.name, field.value, !!field.inline);
+        }
+    }
+    // If command is DM-targeted, add note field
+    if (commandData[k].dm == true) {
+        commandEmbeds[k].addField('Notes', 'There is a *lot* of data on this topic. Please check the DM you were just sent.');
     }
 }
 
@@ -31,12 +54,27 @@ client.on("ready", () => {
 })
 
 client.on("message", msg => {
+    // Ignore anything but commands
     if (msg.content.startsWith("!")) {
-        const messageEmbed = commands[msg.content];
-        if (messageEmbed) {
-            msg.channel.send(messageEmbed);
+        // Grab first user mentioned
+        user = msg.mentions.users.first();
+        // If no user mentioned, default to author of message for self-pings
+        if (!user) {
+            user = msg.author;
+        }
+        // Extract the command in case of user mention
+        command = msg.content.split(" ")[0];
+        const channelEmbed = commandEmbeds[command];
+        if (channelEmbed) {
+            msg.channel.send(channelEmbed);
+            if (commandData[command].dm == true) {
+                dmEmbed = dmEmbeds[command];
+                if (dmEmbed) {
+                    user.send(dmEmbed);
+                }
+            }
         } else {
-            msg.channel.send(commandListEmbed)
+            msg.channel.send(commandListEmbed);
         }
     }
 })
