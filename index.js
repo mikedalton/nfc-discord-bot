@@ -5,10 +5,14 @@ const fs = require('fs');
 const commandData = JSON.parse(fs.readFileSync('commands.json'));
 
 const commands = {};
+const commandListEmbed = new Discord.MessageEmbed()
+    .setColor("#0099ff")
+    .setTitle("Command list")
+    
 const info = ['Currently available commands:'];
 
 for (const k of Object.keys(commandData)) {
-    info.push(commandData[k].info)
+    commandListEmbed.addField(k, commandData[k].info, true);
 
     commands[k] = new Discord.MessageEmbed()
         .setColor(commandData[k].color)
@@ -32,7 +36,7 @@ client.on("message", msg => {
         if (messageEmbed) {
             msg.channel.send(messageEmbed);
         } else {
-            msg.reply(info.join('\n'))
+            msg.channel.send(commandListEmbed)
         }
     }
 })
