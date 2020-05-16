@@ -1,6 +1,6 @@
 {
     "!gpu": {
-        "info": "!gpu\t\t\t\tInfo about GPU options and fitment",
+        "info": "Info about GPU options and fitment",
         "color": "#0099ff",
         "title": "GPU Info",
         "description": "GPU fitment presents an interesting challenge in the S4M. The community maintains the following list of GPU compatibility with the S4M chassis.",
@@ -28,7 +28,7 @@
 
 
     "!brickless": {
-        "info": "!brickless\t\tInfo about brickless configurations",
+        "info": "Info about brickless configurations",
         "color": "#0099ff",
         "title": "Brickless Fitment Info",
         "description": "\"Brickless\" is a configuration where the the entire power supply function (both AC->DC conversion and DC voltage step-down) is housed inside the S4M chassis. This is in contrast to \"brick\" configurations, where the AC->DC conversion is done by a power brick (most commonly a Dell 330w unit) that lives outside the chassis.",
