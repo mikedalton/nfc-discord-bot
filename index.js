@@ -50,7 +50,8 @@ for (const k of Object.keys(commandData)) {
 const client = new Discord.Client();
 
 client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+  console.log(`Logged in as ${client.user.tag}!`);
+  client.channels.cache.get('516778810465583124').send(("Hi! I'm your friendly neighborhood NFC-Bot, here to lend a hand! Start out with !help. For any questions or feedback, hit up @Sm0keWag0n."));
 })
 
 client.on("message", msg => {
