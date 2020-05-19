@@ -33,7 +33,7 @@
                 "name": "Current most powerful non-mod GPU", "value": "Inno3D/Galax/KFA2/ELSA RTX 2070 (non-SUPER)"
             },
             {
-                "name": "Current most powerful mod-required GPU", "value": "Zotac GTX 1080 Mini"
+                "name": "Current most powerful mod-required GPU", "value": "Zotac GTX 1080 ti Mini"
             },
             {
                 "name": "Community GPU spreadsheet", "value": "https://docs.google.com/spreadsheets/d/1H7F9lVWRqY5UHa9y0bOolioUddbVZYbhnz5A5FsVyN0/edit?pli=1#gid=2119905704"
@@ -71,6 +71,20 @@
             {
                 "name": "AC Inlet",
                 "value": "The 400W bundle includes two detachable connectors in the latest revisions (v2.0 - Onwards) - C6 and C14. Most brickless builds use the C6 connector, as the C14 connector does not fit into the cutout at the back of the S4M."
+            }
+        ]
+    },
+
+    "!support": {
+        "info": "Support Info",
+        "color": "#0099ff",
+        "title": "Support Info",
+        "description": "While Josh is on the server a lot and loves interacting with the community, the best way to get help on any questions or issues regarding orders (normal or custom), product availability, defective products, etc., is to send an e-mail.",
+        "dm": false,
+        "fields": [
+            {
+                "name": "Support E-mail",
+                "value": "support@nfc-systems.com"
             }
         ]
     }
