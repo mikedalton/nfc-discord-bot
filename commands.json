@@ -94,7 +94,7 @@
         "color": "#0099ff",
         "title": "Custom Requests",
         "description": "",
-        "dm": false
+        "dm": false,
         "fields": [
             {
                 "name": "Send an email",
