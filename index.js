@@ -1,51 +1,76 @@
 require("dotenv").config()
 const Discord = require("discord.js")
-const fs = require('fs');
+var request = require('sync-request');
 
-const commandData = JSON.parse(fs.readFileSync('commands.json'));
+global.commandData = {};
+global.commandEmbeds = {};
+global.dmEmbeds = {};
+global.commandListEmbed = {};
 
-const commandEmbeds = {};
-const dmEmbeds = {};
-const commandListEmbed = new Discord.MessageEmbed()
-    .setColor("#0099ff")
-    .setTitle("Command list")
-    
-const info = ['Currently available commands:'];
+function updateCommands() {
+    this.commandEmbeds = {};
+    this.dmEmbeds = {};
 
-for (const k of Object.keys(commandData)) {
-    // When building the command list, add @username for DM-targeted commands
-    if (commandData[k].dm == false) {
-        commandListEmbed.addField(k, commandData[k].info, true);
+    let url = process.env.COMMAND_URL;
+
+    var res = request('GET', url);
+    if (res.statusCode != "200") {
+        var err = new Error(
+            'Server responded with status code ' +
+              this.statusCode +
+              ':\n' +
+              this.body.toString(encoding)
+          );
+          err.statusCode = this.statusCode;
+          err.headers = this.headers;
+          err.body = this.body;
+          throw err;
     } else {
-        commandListEmbed.addField(k + ' [@username]', commandData[k].info, true);
+        console.log("Successfully retrieved JSON command file")
+        this.commandData = JSON.parse(res.body);
     }
 
-    // Create embed for main channel
-    commandEmbeds[k] = new Discord.MessageEmbed()
-        .setColor(commandData[k].color)
-        .setTitle(commandData[k].title)
-        .setDescription(commandData[k].description);
+    commandListEmbed = new Discord.MessageEmbed()
+        .setColor("#0099ff")
+        .setTitle("Command list")
 
-    // Create embed for DM reply
-    dmEmbeds[k] = new Discord.MessageEmbed()
-        .setColor(commandData[k].color)
-        .setTitle(commandData[k].title)
-        .setDescription(commandData[k].description);
-
-    // Loop through fields
-    for (const field of commandData[k].fields) {
-        // If the command is channel-targeted, add fields to main command embed. Otherwise, add fields to DM embed
+    for (const k of Object.keys(commandData)) {
+        // When building the command list, add @username for DM-targeted commands
         if (commandData[k].dm == false) {
-            commandEmbeds[k].addField(field.name, field.value, !!field.inline);
+            commandListEmbed.addField(k, commandData[k].info, true);
         } else {
-            dmEmbeds[k].addField(field.name, field.value, !!field.inline);
+            commandListEmbed.addField(k + ' [@username]', commandData[k].info, true);
+        }
+    
+        // Create embed for main channel
+        commandEmbeds[k] = new Discord.MessageEmbed()
+            .setColor(commandData[k].color)
+            .setTitle(commandData[k].title)
+            .setDescription(commandData[k].description);
+    
+        // Create embed for DM reply
+        dmEmbeds[k] = new Discord.MessageEmbed()
+            .setColor(commandData[k].color)
+            .setTitle(commandData[k].title)
+            .setDescription(commandData[k].description);
+    
+        // Loop through fields
+        for (const field of commandData[k].fields) {
+            // If the command is channel-targeted, add fields to main command embed. Otherwise, add fields to DM embed
+            if (commandData[k].dm == false) {
+                commandEmbeds[k].addField(field.name, field.value, !!field.inline);
+            } else {
+                dmEmbeds[k].addField(field.name, field.value, !!field.inline);
+            }
+        }
+        // If command is DM-targeted, add note field
+        if (commandData[k].dm == true) {
+            commandEmbeds[k].addField('Notes', 'There is a *lot* of data on this topic. Please check the DM you were just sent.');
         }
     }
-    // If command is DM-targeted, add note field
-    if (commandData[k].dm == true) {
-        commandEmbeds[k].addField('Notes', 'There is a *lot* of data on this topic. Please check the DM you were just sent.');
-    }
 }
+
+updateCommands();
 
 const client = new Discord.Client();
 
@@ -76,8 +101,21 @@ client.on("message", msg => {
             }
         } else if (msg.content == "!info-bot") {
             msg.channel.send(commandListEmbed);
+        } else if (msg.content == "!update-commands") {
+            if (msg.author.id == process.env.ADMIN_USER) {
+                updateCommands();
+                msg.channel.send("Commands updated");
+            } else {
+                msg.channel.send("You don't have permission to do that, " + msg.author.username);
+            }
         }
     }
+})
+
+var cron = require('node-cron');
+cron.schedule('0 0 0/1 * * * *', () => {
+    console.log('Updating commands from remote file');
+    updateCommands();
 })
 
 client.login(process.env.BOT_TOKEN)
