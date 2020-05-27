@@ -87,5 +87,19 @@
                 "value": "support@nfc-systems.com"
             }
         ]
+    },
+
+    "!custom": {
+        "info": "How to get custom s4m work done",
+        "color": "#0099ff",
+        "title": "Custom Requests",
+        "description": "",
+        "dm": false
+        "fields": [
+            {
+                "name": "Send an email",
+                "value": "For all custom requests, whether that be custom front panel, custom cables, custom _anything_, email support@nfc-systems.com"
+            }
+        ]
     }
 }
