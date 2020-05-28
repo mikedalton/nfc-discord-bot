@@ -70,6 +70,9 @@ class NFCBot {
                 this.commandEmbeds[k].addField('Notes', 'There is a *lot* of data on this topic. Please check the DM you were just sent.');
             }
         }
+        this.commandListEmbed.addField("\u200B", "\u200B");
+        this.commandListEmbed.addField("About NFC-Discord-Bot", "Idea and prototype by @Sm0keWag0n, but @Carson made it actually good.");
+        this.commandListEmbed.addField("Contribute", "This info is community-driven. If you have ideas or information to add/correct, please visit the [GitHub Repo](https://github.com/mikedalton/nfc-discord-bot) and submit Issues, or fork/pull request.");
     }
 
     start() {
