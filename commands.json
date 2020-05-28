@@ -1,4 +1,18 @@
 {
+    "!180": {
+        "info": "180 degree PCIe adapter",
+        "color": "#0099ff",
+        "title": "180 degree PCIe adapter",
+        "description": "",
+        "dm": false,
+        "fields": [
+            {
+                "name": "modDIY 180",
+                "value": "[modDIY](https://www.moddiy.com/products/GPU-VGA-8Pin-6Pin-PCIE-U-Turn-180-Degree-Angle-Connector-Adapter-Board.html)"
+            }
+        ]
+    },
+    
     "!brickless": {
         "info": "Brickless configurations",
         "color": "#0099ff",
@@ -30,13 +44,16 @@
                 "name": "Maximum card height", "value": "111mm (without mods)", "inline": true
             },
             {
-                "name": "Current most powerful non-mod GPU", "value": "Inno3D/Galax/KFA2/ELSA RTX 2070 (non-SUPER)"
+                "name": "Easy drop-in GPU", "value": "[EVGA 2060 KO Ultra](https://www.evga.com/products/product.aspx?pn=06G-P4-2068-KR)", "inline": true
             },
             {
-                "name": "Current most powerful mod-required GPU", "value": "Zotac GTX 1080 ti Mini"
+                "name": "Current most powerful non-mod GPU", "value": "[Inno3D](http://www.inno3d.com/products_detail.php?refid=397)/[Galax](https://www.galax.com/en/graphics-card/20-series/galax-geforce-rtx-2070-black-mini-1click.html)/[KFA2](https://www.kfa2.com/kfa2/graphics-card/20-series/kfa2-geforce-rtx-2070-mini-1clickoc.html)/[ELSA](http://www.elsa-jp.co.jp/products/products-top/graphicsboard/geforce/ultra_high_end/elsa-geforce-rtx-2070-sac/) RTX 2070 (non-SUPER)"
             },
             {
-                "name": "Community GPU spreadsheet", "value": "https://docs.google.com/spreadsheets/d/1H7F9lVWRqY5UHa9y0bOolioUddbVZYbhnz5A5FsVyN0/edit?pli=1#gid=2119905704"
+                "name": "Current most powerful mod-required GPU", "value": "[Zotac GTX 1080 ti Mini](https://www.zotac.com/jp/product/graphics_card/zotac-geforce-gtx-1080-ti-mini)"
+            },
+            {
+                "name": "Community GPU spreadsheet", "value": "[Link](https://docs.google.com/spreadsheets/d/1H7F9lVWRqY5UHa9y0bOolioUddbVZYbhnz5A5FsVyN0/edit?pli=1#gid=2119905704)"
             }
         ]
     },
@@ -62,7 +79,7 @@
             },
             {
                 "name": "DC-ATX Product Page",
-                "value": "https://hdplex.com/hdplex-400w-hi-fi-dc-atx-power-supply-16v-24v-wide-range-voltage-input.html"
+                "value": "[Link](https://hdplex.com/hdplex-400w-hi-fi-dc-atx-power-supply-16v-24v-wide-range-voltage-input.html)"
             },
             {
                 "name": "Mounting",
