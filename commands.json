@@ -44,6 +44,20 @@
             }
         ]
     },
+    
+    "!custom": {
+        "info": "Get custom S4M work",
+        "color": "#0099ff",
+        "title": "Custom Requests",
+        "description": "",
+        "dm": false,
+        "fields": [
+            {
+                "name": "Send an email",
+                "value": "For all custom requests, whether that be custom front panel, custom cables, custom _anything_, email support@nfc-systems.com"
+            }
+        ]
+    }
 
     "!gpu": {
         "info": "GPU options and fitment",
@@ -110,6 +124,20 @@
         ]
     },
 
+    "!riser": {
+        "info": "Risers",
+        "color": "#0099ff",
+        "title": "Riser Info",
+        "description": "The S4M-C use a custom-designed PCIe riser from Li-Heat, while for most of the S4M production run, a custom SILIFLEX riser instead as it is more compact. Both risers are high quality and work well. Late run S4Ms are shipping with the latest Li-Heat riser due to the minimum order quantity to secure additional SILIFLEX risers.",
+        "dm": false,
+        "fields": [
+            {
+                "name": "SILIFLEX riser",
+                "value": "[Link](https://store.nfc-systems.com/collections/parts-accessories/products/siliflex-riser)"
+            }
+        ]
+    }
+
     "!support": {
         "info": "Support Info",
         "color": "#0099ff",
@@ -120,20 +148,6 @@
             {
                 "name": "Support E-mail",
                 "value": "support@nfc-systems.com"
-            }
-        ]
-    },
-
-    "!custom": {
-        "info": "How to get custom s4m work done",
-        "color": "#0099ff",
-        "title": "Custom Requests",
-        "description": "",
-        "dm": false,
-        "fields": [
-            {
-                "name": "Send an email",
-                "value": "For all custom requests, whether that be custom front panel, custom cables, custom _anything_, email support@nfc-systems.com"
             }
         ]
     }
