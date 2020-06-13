@@ -107,11 +107,15 @@
             },
             {
                 "name": "Hardware Revisions",
-                "value": "As of 2020-05-16, the 400W AC-DC unit has two versions: one with no version mark (called 1.0) and one that is marked 2.0. The significant difference is that version 2.0 was made thinner in order to accomodate flipped/swapped layout without requiring any milling. The 400W DC-ATX unit has gone through several revisions, and the revision is printed directly on the unit. The pinout of the PCIe power connector was changed between versions 1.X, 2.0, and 2.1. View the Specs page on the following product page link to reference the correct diagram for your revision of the 400W DC-ATX unit."
+                "value": "As of 2020-05-16, the 400W AC-DC unit has three versions: one with no version mark (called 1.X), 2.0, and 2.1. The significant difference is that version 2.0 was made thinner in order to accomodate flipped/swapped layout without requiring any milling. The 400W DC-ATX unit has gone through several revisions, and the revision is printed directly on the unit. The pinout of the PCIe power connector was changed between versions 1.X, 2.0, and 2.1. View the Specs page on the following product page link or follow the direct links below to reference the correct diagram for your revision of the 400W DC-ATX unit."
             },
             {
                 "name": "DC-ATX Product Page",
                 "value": "[Link](https://hdplex.com/hdplex-400w-hi-fi-dc-atx-power-supply-16v-24v-wide-range-voltage-input.html)"
+            },
+            {
+                "name": "DC-ATX Pin-out Diagrams",
+                "value": "[1.X](https://hdplex.com/pub/media/image/Product/400WDCATX/spec/HDPLEX.400WDCATX.DIAGRAM.SelfLock.png) | [2.0](https://hdplex.com/pub/media/image/Product/400WDCATX/spec/HDPLEX.400W.DC-ATX.2.0.Diagram.png) | [2.1](https://hdplex.com/pub/media/image/Product/400WDCATX/spec/HDPLEX.400W.DCATX.2.1.Diagram.png)"
             },
             {
                 "name": "Mounting",
