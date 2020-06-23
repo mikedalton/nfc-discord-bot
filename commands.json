@@ -54,7 +54,7 @@
         "fields": [
             {
                 "name": "Send an email",
-                "value": "For all custom requests, whether that be custom front panel, custom cables, custom _anything_, email support@nfc-systems.com"
+                "value": "For all custom requests, whether that be custom front panel, custom cables, custom _anything_, email [support@nfc-systems.com](mailto:support@nfc-systems.com)"
             }
         ]
     },
@@ -151,7 +151,7 @@
         "fields": [
             {
                 "name": "Support E-mail",
-                "value": "support@nfc-systems.com"
+                "value": "[support@nfc-systems.com](mailto:support@nfc-systems.com)"
             }
         ]
     }
